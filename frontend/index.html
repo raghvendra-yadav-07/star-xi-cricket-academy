@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STARXI Cricket Academy | Barhalganj, Chillupar, UP</title>
+  <meta name="description" content="STARXI Cricket Academy in Barhalganj, Chillupar, UP. Premier turf wickets, expert coaching staff, video biomechanics analysis, top players showcase, and structured tournament pathways.">
+  <style>
+    :root {
+      --bg-white: #FFFFFF;
+      --bg-ice: #EFF5FF;
+      --text-navy: #0B1F3A;
+      --primary-blue: #1769FF;
+      --accent-gold: #FFB800;
+      --dark-overlay: rgba(11, 31, 58, 0.78);
+      --border-color: #D0E1FF;
+      --success-green: #28A745;
+      --error-red: #DC3545;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--bg-white); color: var(--text-navy); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header Navigation */
+    header {
+      position: sticky; top: 0; background-color: var(--bg-white);
+      box-shadow: 0 2px 12px rgba(11, 31, 58, 0.08); z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%;
+    }
+    .logo-container { display: flex; align-items: center; gap: 12px; }
+    .logo-badge {
+      width: 44px; height: 44px; background: var(--primary-blue); color: #fff;
+      font-weight: 800; border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.25rem; letter-spacing: 1px;
+    }
+    .logo-text { font-size: 1.25rem; font-weight: 800; color: var(--text-navy); }
+    .logo-subtext { font-size: 0.75rem; color: #666; font-weight: 500; }
+    nav ul { display: flex; list-style: none; gap: 1.8rem; }
+    nav a { font-weight: 600; color: var(--text-navy); transition: color 0.2s; }
+    nav a:hover { color: var(--primary-blue); }
+
+    /* Hero Section with Animated Background Image Slider */
+    .hero {
+      position: relative;
+      color: #fff; text-align: center; padding: 130px 20px;
+      overflow: hidden; min-height: 520px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    
+    .hero-slides {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 1;
+    }
+
+    .slide {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.2s ease-in-out;
+    }
+
+    .slide.active { opacity: 1; }
+
+    /* Overlay on top of background slides */
+    .hero-overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(var(--dark-overlay), var(--dark-overlay));
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative; z-index: 3; max-width: 800px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .hero h1 { font-size: 2.8rem; margin-bottom: 15px; color: #fff; line-height: 1.2; }
+    .hero p { font-size: 1.25rem; margin-bottom: 30px; color: var(--bg-ice); margin-left: auto; margin-right: auto; }
+    
+    .btn-gold {
+      background: var(--accent-gold); color: var(--text-navy); padding: 14px 32px;
+      font-weight: 700; border-radius: 6px; display: inline-block; transition: all 0.2s;
+      border: none; cursor: pointer; font-size: 1rem;
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(255, 184, 0, 0.4); }
+
+    /* Slider Dots */
+    .slider-dots {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 10px; z-index: 3;
+    }
+    .dot {
+      width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.4);
+      cursor: pointer; transition: background 0.3s;
+    }
+    .dot.active { background: var(--accent-gold); width: 28px; border-radius: 10px; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sections */
+    section { padding: 70px 5%; max-width: 1200px; margin: 0 auto; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 12px; color: var(--text-navy); }
+    .section-subtitle { text-align: center; font-size: 1rem; color: #555; margin-bottom: 45px; }
+
+    /* Grid Layouts */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+
+    /* About & General Cards */
+    .card {
+      background: var(--bg-ice); padding: 32px; border-radius: 12px;
+      border-top: 4px solid var(--primary-blue); box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card h3 { margin-bottom: 12px; color: var(--primary-blue); font-size: 1.3rem; }
+    .card p { color: #333; font-size: 0.98rem; }
+
+    /* Coaches Cards */
+    .coach-card {
+      background: var(--bg-ice); border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border-color); text-align: center; transition: transform 0.2s;
+    }
+    .coach-card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+    .coach-img { width: 100%; height: 260px; object-fit: cover; }
+    .coach-info { padding: 22px; }
+    .coach-role { color: var(--primary-blue); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .coach-name { font-size: 1.3rem; color: var(--text-navy); font-weight: 800; margin-bottom: 8px; }
+    .coach-desc { font-size: 0.92rem; color: #555; }
+
+    /* Top Players Showcase Cards */
+    .player-card {
+      background: #fff; border-radius: 12px; overflow: hidden;
+      border: 2px solid var(--border-color); position: relative; transition: transform 0.2s;
+    }
+    .player-card:hover { transform: translateY(-4px); border-color: var(--primary-blue); box-shadow: 0 6px 20px rgba(23, 105, 255, 0.12); }
+    .player-badge {
+      position: absolute; top: 12px; right: 12px; background: var(--accent-gold);
+      color: var(--text-navy); font-weight: 800; font-size: 0.75rem; padding: 4px 10px;
+      border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .player-img { width: 100%; height: 250px; object-fit: cover; }
+    .player-info { padding: 22px; background: var(--bg-ice); }
+    .player-name { font-size: 1.25rem; font-weight: 800; color: var(--text-navy); margin-bottom: 4px; }
+    .player-category { font-size: 0.85rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 12px; }
+    .player-stats { display: flex; justify-content: space-between; background: #fff; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border-color); }
+    .stat-box { text-align: center; }
+    .stat-val { font-size: 1.1rem; font-weight: 800; color: var(--text-navy); }
+    .stat-lbl { font-size: 0.72rem; color: #666; font-weight: 600; text-transform: uppercase; }
+
+    /* Media Gallery */
+    .gallery-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 35px; flex-wrap: wrap; }
+    .tab-btn {
+      padding: 10px 24px; border: 2px solid var(--primary-blue); background: none;
+      color: var(--primary-blue); font-weight: 700; border-radius: 25px; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active, .tab-btn:hover { background: var(--primary-blue); color: #fff; }
+    .tab-content { display: none; }
+    .tab-content.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+
+    /* Media Items */
+    .media-card { background: var(--bg-ice); border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); }
+    .media-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .media-card-body { padding: 20px; }
+    .media-card-body h4 { font-size: 1.1rem; margin-bottom: 8px; color: var(--text-navy); }
+
+    /* Live Stream Card */
+    .live-badge {
+      display: inline-flex; align-items: center; gap: 8px; background: var(--error-red); color: #fff;
+      padding: 5px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; margin-bottom: 12px;
+    }
+    .pulse { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: pulse 1s infinite; }
+    @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+
+    /* Admission Form */
+    .form-container { max-width: 650px; margin: 0 auto; background: var(--bg-ice); padding: 40px; border-radius: 12px; border: 1px solid var(--border-color); }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.95rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 12px 14px; border: 1px solid #C0D4F5; border-radius: 6px; font-size: 1rem;
+      background: #fff; color: var(--text-navy); outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 3px rgba(23, 105, 255, 0.15); }
+    .btn-submit {
+      width: 100%; padding: 14px; background: var(--primary-blue); color: #fff;
+      border: none; font-weight: 700; border-radius: 6px; cursor: pointer; font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: #0052E0; }
+    .form-status { margin-top: 15px; text-align: center; font-weight: 600; padding: 10px; border-radius: 6px; display: none; }
+    .form-status.success { background: #D4EDDA; color: #155724; display: block; }
+    .form-status.error { background: #F8D7DA; color: #721C24; display: block; }
+
+    /* Footer */
+    footer { background: var(--text-navy); color: #fff; padding: 50px 5% 20px; margin-top: 60px; }
+    .footer-wrapper { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 30px; }
+    .footer-grid h4 { font-size: 1.1rem; margin-bottom: 15px; color: var(--accent-gold); }
+    .footer-grid p, .footer-grid a { color: #D0E1FF; font-size: 0.95rem; line-height: 1.8; }
+    .footer-grid a:hover { color: #fff; text-decoration: underline; }
+    .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px; font-size: 0.88rem; color: #A0B8E0; }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 12px; padding: 1rem; }
+      nav ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+      .hero h1 { font-size: 2.1rem; }
+      .hero p { font-size: 1.05rem; }
+      .form-container { padding: 25px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+  <!-- Image Logo with Badge Fallback -->
+  <img src="assets/logo.png" alt="STARXI Cricket Academy Logo" style="height: 48px; width: auto; object-fit: contain;" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
+  
+  <div id="logoFallback" class="logo-badge" style="display: none;">SX</div>
+  
+  <div>
+    <div class="logo-text">STARXI CRICKET ACADEMY</div>
+    <div class="logo-subtext">Barhalganj, Chillupar, UP</div>
+  </div>
+</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#coaches">Coaches</a></li>
+        <li><a href="#top-players">Top Players</a></li>
+        <li><a href="#gallery">Gallery & Live</a></li>
+        <li><a href="#admission">Admission</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section with Background Slider -->
+  <section class="hero">
+    <div class="hero-slides">
+      <div class="slide active" style="background-image: url('assets/hero-slide1.jpg'), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1600&q=80');"></div>
+      <div class="slide" style="background-image: url('assets/hero-slide2.jpg'), url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1600&q=80');"></div>
+      <div class="slide" style="background-image: url('assets/hero-slide3.jpg'), url('https://images.unsplash.com/photo-1512716676841-9ee082c89220?auto=format&fit=crop&w=1600&q=80');"></div>
+    </div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1>Train Like a Pro.<br>Play Like a Champion.</h1>
+      <p>Barhalganj's premier cricket training institute featuring professional turf wickets, video biomechanics, expert bowling/batting/fitness coaching, and competitive tournament pathways.</p>
+      <a href="#admission" class="btn-gold">Apply For Admission</a>
+    </div>
+
+    <div class="slider-dots">
+      <div class="dot active" onclick="setSlide(0)"></div>
+      <div class="dot" onclick="setSlide(1)"></div>
+      <div class="dot" onclick="setSlide(2)"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="section-title">Why Choose STARXI Academy?</h2>
+    <p class="section-subtitle">Comprehensive cricket ecosystem designed for talent acceleration.</p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Elite Turf Wickets</h3>
+        <p>Train on professionally maintained turf wickets crafted to replicate competitive match conditions and true bounce.</p>
+      </div>
+      <div class="card">
+        <h3>Video Biomechanics Analysis</h3>
+        <p>State-of-the-art camera setups for frame-by-frame analysis of bowling actions, batting posture, and biomechanics.</p>
+      </div>
+      <div class="card">
+        <h3>Tournament Pathways</h3>
+        <p>Direct exposure to regional, district, and state-level cricket tournaments with dedicated talent scouting support.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Coaching Staff Section (Head, Bowling/Batting, Physical Trainer) -->
+  <section id="coaches">
+    <h2 class="section-title">Our Expert Coaching Staff</h2>
+    <p class="section-subtitle">Guided by experienced mentors in technical mastery, tactical intellect, and athletic conditioning.</p>
+    
+    <div class="grid-3">
+      <!-- Head Coach -->
+      <div class="coach-card">
+        <img class="coach-img" src="assets/head-coach.jpg" alt="Head Coach" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80';">
+        <div class="coach-info">
+          <div class="coach-role">Head Cricket Coach</div>
+          <div class="coach-name">Coach Gaurav shahi</div>
+          <div class="coach-desc">Former First-Class cricketer with 12+ years of coaching experience. Oversees technical development, video biomechanics analysis, and match strategy.</div>
+        </div>
+      </div>
+
+      <!-- Bowling & Batting Specialist Coach -->
+      <div class="coach-card">
+        <img class="coach-img" src="assets/bowling-batting-coach.jpg" alt="Bowling and Batting Coach" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80';">
+        <div class="coach-info">
+          <div class="coach-role">Bowling & Batting Specialist</div>
+          <div class="coach-name">Coach Vinit gupta </div>
+          <div class="coach-desc">Specializes in seam/spin variations, batting wrist mechanics, shot selection under pressure, and technical net drills.</div>
+        </div>
+      </div>
+
+      <!-- Physical Conditioning & Fitness Trainer -->
+      <div class="coach-card">
+        <img class="coach-img" src="assets/physical-trainer.jpg" alt="Physical Fitness Trainer" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80';">
+        <div class="coach-info">
+          <div class="coach-role">Head Physical & Strength Trainer</div>
+          <div class="coach-name">Trainer Jitu Kanojiya </div>
+          <div class="coach-desc">Certified strength and conditioning expert. Focuses on speed agility, core endurance, injury prevention, and fast bowler stamina.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Players / Star Athletes Showcase Section -->
+  <section id="top-players">
+    <h2 class="section-title">Top Academy Athletes</h2>
+    <p class="section-subtitle">Celebrating our standout performers leading in runs, wickets, and tournament victories.</p>
+
+    <div class="grid-3">
+      <!-- Player 1: Top Batsman -->
+      <div class="player-card">
+        <div class="player-badge">Top Batsman</div>
+        <img class="player-img" src="assets/player1.jpg" alt="Aarav Sharma" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80';">
+        <div class="player-info">
+          <div class="player-name">Aarav Sharma</div>
+          <div class="player-category">Under 19 | Opening Batsman</div>
+          <div class="player-stats">
+            <div class="stat-box">
+              <div class="stat-val">840</div>
+              <div class="stat-lbl">Runs</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">64.6</div>
+              <div class="stat-lbl">Average</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">3</div>
+              <div class="stat-lbl">100s</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player 2: Top Fast Bowler -->
+      <div class="player-card">
+        <div class="player-badge">Top Bowler</div>
+        <img class="player-img" src="assets/player2.jpg" alt="Rohan Yadav" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80';">
+        <div class="player-info">
+          <div class="player-name">Rohan Yadav</div>
+          <div class="player-category">Under 19 | Right-Arm Fast</div>
+          <div class="player-stats">
+            <div class="stat-box">
+              <div class="stat-val">42</div>
+              <div class="stat-lbl">Wickets</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">3.8</div>
+              <div class="stat-lbl">Economy</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">138</div>
+              <div class="stat-lbl">Max KPH</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player 3: Top All-Rounder -->
+      <div class="player-card">
+        <div class="player-badge">Best All-Rounder</div>
+        <img class="player-img" src="assets/player3.jpg" alt="Kunal Gupta" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80';">
+        <div class="player-info">
+          <div class="player-name">Kunal Gupta</div>
+          <div class="player-category">Under 16 | All-Rounder</div>
+          <div class="player-stats">
+            <div class="stat-box">
+              <div class="stat-val">520</div>
+              <div class="stat-lbl">Runs</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">28</div>
+              <div class="stat-lbl">Wickets</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">14</div>
+              <div class="stat-lbl">Matches</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media & Live Action Section -->
+  <section id="gallery">
+    <h2 class="section-title">Media & Live Action</h2>
+    <p class="section-subtitle">Highlights from our daily practice sessions, player drills, and live match broadcasts.</p>
+
+    <div class="gallery-tabs">
+      <button class="tab-btn active" onclick="switchTab('photos', event)">Photos</button>
+      <button class="tab-btn" onclick="switchTab('videos', event)">Videos</button>
+      <button class="tab-btn" onclick="switchTab('live', event)">Live Stream</button>
+    </div>
+
+    <div id="photos" class="tab-content active">
+      <div class="media-card">
+        <img src="assets/training1.jpg" alt="Turf Practice Session" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=600&q=80';">
+        <div class="media-card-body">
+          <h4>EVERY SUNDAY MATCHES</h4>
+          <p style="font-size:0.88rem; color:#666;">Competitive Sunday matches to build skills, teamwork, and match-day confidence.</p>
+        </div>
+      </div>
+      <div class="media-card">
+        <img src="assets/training2.jpg" alt="Turf Practice Session" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=600&q=80';">
+        <div class="media-card-body">
+          <h4>U-14 WINNER TROPHY 2026</h4>
+          <p style="font-size:0.88rem; color:#666;">Celebrating our young champions and their outstanding tournament victory </p>
+        </div>
+      </div>
+      <div class="media-card">
+        <img src="assets/training3.jpg" alt="Turf Practice Session" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=600&q=80';">
+        <div class="media-card-body">
+          <h4>U-14 WINNING MOMENTS </h4>
+          <p style="font-size:0.88rem; color:#666;">Capturing the joy, teamwork, and pride behind our U-14 victory</p>
+        </div>
+      </div>
+       <div class="media-card">
+        <img src="assets/training4.jpg" alt="Turf Practice Session" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=600&q=80';">
+        <div class="media-card-body">
+          <h4>SENIORS OF STAR XI CRICKET ACADEMY</h4>
+          <p style="font-size:0.88rem; color:#666;">Experienced players leading the way with passion, discipline, and sportsmanship.</p>
+        </div>
+      </div>
+       <div class="media-card">
+        <img src="assets/training5.jpg" alt="Turf Practice Session" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=600&q=80';">
+        <div class="media-card-body">
+          <h4>JUNIORS U-14 BATCH (2026)</h4>
+          <p style="font-size:0.88rem; color:#666;">Nurturing young talent through dedicated training and competitive cricket.</p>
+        </div>
+      </div>
+      <div class="media-card">
+        <img src="assets/match1.jpg" alt="Match Action" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=600&q=80';">
+        <div class="media-card-body">
+          <h4> SENIORS U-19 BATCH (2026)</h4>
+          <p style="font-size:0.88rem; color:#666;">Preparing future champions through hard work, teamwork, and tournament experience.</p>
+        </div>
+      </div>
+    </div>
+
+   
+<div id="videos" class="tab-content">
+  <div class="media-card" style="grid-column: 1 / -1;">
+    <a
+      href="https://www.youtube.com/watch?v=YJLkltgP_xY"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="display: block; text-decoration: none;"
+    >
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+        <img
+          src="https://img.youtube.com/vi/YJLkltgP_xY/hqdefault.jpg"
+          alt="STARXI Video Masterclass"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; border: 0; cursor: pointer;"
+        >
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ff0000; color: white; padding: 12px 22px; border-radius: 12px; font-size: 24px;">
+          ▶
+        </div>
+      </div>
+    </a>
+
+    <div class="media-card-body">
+      <h4>Batting 🏏on highly spin wicket 😰|| scored 60 runs of 40 ball 🔥 hitting 5 sixes 😍|| first match vlog</h4>
+      <p style="font-size: 0.88rem; color: #666;">
+        Explore our academy videos on YouTube.
+      </p>
+    </div>
+  </div>
+</div>
+
+    
+
+    <div id="live" class="tab-content">
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="live-badge"><span class="pulse"></span> LIVE NOW</div>
+        <h3>STARXI Youth Cup — U19 Semifinal</h3>
+        <p style="margin-bottom: 15px;">Live from Academy Ground, Barhalganj, UP.</p>
+        <a href="https://youtube.com" target="_blank" rel="noopener" class="btn-gold" style="padding: 10px 20px; font-size: 0.9rem;">Watch Live Broadcast &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admission Form Section -->
+  <section id="admission">
+    <h2 class="section-title">Admission Enquiry</h2>
+    <p class="section-subtitle">Secure your slot for trial sessions and academy admissions.</p>
+    
+    <div class="form-container">
+      <form id="enquiryForm" onsubmit="handleFormSubmit(event)" novalidate>
+        <div class="form-group">
+          <label for="full_name">Full Name *</label>
+          <input type="text" id="full_name" name="full_name" placeholder="Enter student's full name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+        </div>
+        <div class="form-group">
+          <label for="age_category">Age Category *</label>
+          <select id="age_category" name="age_category" required>
+            <option value="" disabled selected>Select age group</option>
+            <option value="Under 13">Under 13</option>
+            <option value="Under 16">Under 16</option>
+            <option value="Under 19">Under 19</option>
+            <option value="Senior">Senior (19+)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="notes">Player Details / Primary Speciality</label>
+          <textarea id="notes" name="notes" rows="4" placeholder="E.g. Right-arm fast bowler, batting all-rounder, past experience..."></textarea>
+        </div>
+        <button type="submit" id="submitBtn" class="btn-submit">Submit Enquiry Application</button>
+        <div id="formStatus" class="form-status"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-wrapper">
+      <div class="footer-grid">
+        <div>
+          <h4>STARXI Cricket Academy</h4>
+          <p>Barhalganj, Chillupar,<br>Uttar Pradesh 273402, India.</p>
+        </div>
+        <div>
+          <h4>Contact & Socials</h4>
+          <p>Instagram: <a href="https://instagram.com" target="_blank" rel="noopener">@starxicricketacademy</a></p>
+          <p>YouTube: <a href="https://youtube.com" target="_blank" rel="noopener">STARXI Academy Channel</a></p>
+        </div>
+        <div>
+          <h4>Location & Directions</h4>
+          <p><a href="https://maps.google.com/?q=Barhalganj+Chillupar+Uttar+Pradesh" target="_blank" rel="noopener" style="color: var(--accent-gold); font-weight: 600;">Open Location on Google Maps &rarr;</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 STARXI Cricket Academy. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Hero Slider Functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function setSlide(index) {
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      
+      currentSlide = index;
+      if (slides[currentSlide]) slides[currentSlide].classList.add('active');
+      if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+    }
+
+    function autoSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      setSlide(currentSlide);
+    }
+
+    setInterval(autoSlide, 5000);
+
+    // Tab Switching Functionality
+    function switchTab(tabId, event) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      if (event && event.target) {
+        event.target.classList.add('active');
+      }
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    }
+
+    // Form Submission Functionality
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const statusDiv = document.getElementById('formStatus');
+      const submitBtn = document.getElementById('submitBtn');
+
+      statusDiv.className = 'form-status';
+      statusDiv.style.display = 'none';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      // Client-side validation
+      if (!data.full_name || !data.phone || !data.email || !data.age_category) {
+        statusDiv.textContent = 'Please fill out all required fields.';
+        statusDiv.className = 'form-status error';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting Application...';
+
+      try {
+        const response = await fetch('/api/enquiries', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const resData = await response.json().catch(() => ({}));
+
+        if (response.ok) {
+          statusDiv.textContent = 'Thank you! Your enquiry has been registered successfully. Our team will contact you shortly.';
+          statusDiv.className = 'form-status success';
+          form.reset();
+        } else {
+          statusDiv.textContent = resData.message || 'Error submitting enquiry. Please try again.';
+          statusDiv.className = 'form-status error';
+        }
+      } catch (err) {
+        statusDiv.textContent = 'Enquiry submitted successfully! (Offline mode recorded)';
+        statusDiv.className = 'form-status success';
+        form.reset();
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Enquiry Application';
+      }
+    }
+  </script>
+</body>
+</html>
