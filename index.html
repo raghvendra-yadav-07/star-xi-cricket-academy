@@ -321,7 +321,85 @@
   <section id="top-players">
     <h2 class="section-title">Top Academy Athletes</h2>
     <p class="section-subtitle">Celebrating our standout performers leading in runs, wickets, and tournament victories.</p>
+<h3 class="section-title">SENIORS</h3>
+    <div class="grid-3">
+      <!-- Player 1: Top Batsman -->
+      <div class="player-card">
+        <div class="player-badge">Top Batsman</div>
+        <img class="player-img" src="assets/player1.jpg" alt="Aarav Sharma" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80';">
+        <div class="player-info">
+          <div class="player-name">VINAYAK RAI</div>
+          <div class="player-category">Under 19 | Opening Batsman</div>
+          <div class="player-stats">
+            <div class="stat-box">
+              <div class="stat-val">840</div>
+              <div class="stat-lbl">Runs</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">64.6</div>
+              <div class="stat-lbl">Average</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">3</div>
+              <div class="stat-lbl">100s</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <!-- Player 2: Top Fast Bowler -->
+      <div class="player-card">
+        <div class="player-badge">Top Batsman</div>
+        <img class="player-img" src="assets/player2.jpg" alt="Rohan Yadav" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80';">
+        <div class="player-info">
+          <div class="player-name">ABHINAV TIWARI </div>
+          <div class="player-category">Under 19 | Right-Arm Fast</div>
+          <div class="player-stats">
+            <div class="stat-box">
+              <div class="stat-val">42</div>
+              <div class="stat-lbl">Wickets</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">3.8</div>
+              <div class="stat-lbl">Economy</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">138</div>
+              <div class="stat-lbl">Max KPH</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player 3: Top All-Rounder -->
+      <div class="player-card">
+        <div class="player-badge">Best All-Rounder</div>
+        <img class="player-img" src="assets/player3.jpg" alt="Kunal Gupta" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80';">
+        <div class="player-info">
+          <div class="player-name">Kunal Gupta</div>
+          <div class="player-category">Under 16 | All-Rounder</div>
+          <div class="player-stats">
+            <div class="stat-box">
+              <div class="stat-val">520</div>
+              <div class="stat-lbl">Runs</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">28</div>
+              <div class="stat-lbl">Wickets</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-val">14</div>
+              <div class="stat-lbl">Matches</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </section>
+  <section id="top-players">
+   <h3 class="section-title">JUNIORS</h3>
     <div class="grid-3">
       <!-- Player 1: Top Batsman -->
       <div class="player-card">
@@ -395,6 +473,8 @@
         </div>
       </div>
     </div>
+    
+    
   </section>
 
   <!-- Media & Live Action Section -->
@@ -501,7 +581,7 @@
     <p class="section-subtitle">Secure your slot for trial sessions and academy admissions.</p>
     
     <div class="form-container">
-      <form id="enquiryForm" onsubmit="handleFormSubmit(event)" novalidate>
+      <form id="enquiryForm" action="https://formsubmit.co/starxicricketacademy@gmail.com" method="POST"></form>
         <div class="form-group">
           <label for="full_name">Full Name *</label>
           <input type="text" id="full_name" name="full_name" placeholder="Enter student's full name" required>
@@ -595,54 +675,56 @@
     }
 
     // Form Submission Functionality
-    async function handleFormSubmit(e) {
-      e.preventDefault();
-      const form = e.target;
-      const statusDiv = document.getElementById('formStatus');
-      const submitBtn = document.getElementById('submitBtn');
+    
+async function handleFormSubmit(e) {
+  e.preventDefault();
 
-      statusDiv.className = 'form-status';
-      statusDiv.style.display = 'none';
+  const form = e.target;
+  const statusDiv = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+  statusDiv.className = 'form-status';
+  statusDiv.style.display = 'none';
 
-      // Client-side validation
-      if (!data.full_name || !data.phone || !data.email || !data.age_category) {
-        statusDiv.textContent = 'Please fill out all required fields.';
-        statusDiv.className = 'form-status error';
-        return;
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting Application...';
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        Accept: 'application/json'
       }
+    });
 
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting Application...';
-
-      try {
-        const response = await fetch('/api/enquiries', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-
-        const resData = await response.json().catch(() => ({}));
-
-        if (response.ok) {
-          statusDiv.textContent = 'Thank you! Your enquiry has been registered successfully. Our team will contact you shortly.';
-          statusDiv.className = 'form-status success';
-          form.reset();
-        } else {
-          statusDiv.textContent = resData.message || 'Error submitting enquiry. Please try again.';
-          statusDiv.className = 'form-status error';
-        }
-      } catch (err) {
-        statusDiv.textContent = 'Enquiry submitted successfully! (Offline mode recorded)';
-        statusDiv.className = 'form-status success';
-        form.reset();
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Enquiry Application';
-      }
+    if (!response.ok) {
+      throw new Error('Submission failed');
     }
+
+    statusDiv.textContent =
+      'Thank you! Your enquiry has been submitted successfully.';
+    statusDiv.className = 'form-status success';
+    statusDiv.style.display = 'block';
+    form.reset();
+
+  } catch (err) {
+    statusDiv.textContent =
+      'Unable to submit enquiry. Please try again.';
+    statusDiv.className = 'form-status error';
+    statusDiv.style.display = 'block';
+
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Enquiry Application';
+  }
+}
+
   </script>
 </body>
 </html>
